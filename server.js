@@ -10,7 +10,7 @@ const fs = require('fs');
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server);
+const io = new Server(server, { cors: { origin: '*' } });
 const frontendDirectory = path.resolve(__dirname, '../Frontend/public');
 const uploadsDirectory = path.resolve(__dirname, 'uploads');
 
@@ -162,7 +162,7 @@ app.post('/api/print-direct', async (req, res) => {
   }
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
-  console.log(`🚀 Gaurav Printing Hub Server Active on http://localhost:${PORT}`);
+  console.log(`🚀 Gaurav Printing Hub Server Active on port ${PORT}`);
 });
